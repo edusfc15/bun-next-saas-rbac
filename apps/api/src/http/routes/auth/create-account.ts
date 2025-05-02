@@ -33,12 +33,9 @@ export async function createAccount(app: FastifyInstance) {
                     shouldAttachUsersByDomain: true
                 }
             })
-
-
-
             
             if (userWithSameEmail) {
-                return reply.status(409).send({ message: "User already exists" })
+                throw new Error('User already exists')
             }
 
             const passwordHash = await hash(password, 6)

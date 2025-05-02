@@ -1,8 +1,43 @@
-POST http://localhost:3333/users
+@baseUrl = http://localhost:3333
+@authToken = {{getToken.response.body.token}}
+
+
+###
+# @name getToken
+POST {{baseUrl}}/sessions/password
 Content-Type: application/json
 
 {
-  "name": "John Doe",
-  "email": "jhon@doe.com",
+  "email": "edu@email.com"
+}
+
+###
+# @name createUser
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Eduardo Santana",
+  "email": "edu@email.com",
   "password": "12345678"
+}
+
+
+###
+
+GET {{baseUrl}}/profile 
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "email": "edu@email.com",
+}
+
+###
+
+POST {{baseUrl}}/debug-zod
+Content-Type: application/json
+
+{
+  "email": "edu@email.com"
 }
