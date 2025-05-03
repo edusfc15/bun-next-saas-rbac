@@ -8,7 +8,8 @@ POST {{baseUrl}}/sessions/password
 Content-Type: application/json
 
 {
-  "email": "edu@email.com"
+  "email": "edu@email.com",
+  "password": "12345678"
 }
 
 ###
@@ -33,11 +34,3 @@ Authorization: Bearer {{authToken}}
   "email": "edu@email.com",
 }
 
-###
-
-POST {{baseUrl}}/debug-zod
-Content-Type: application/json
-
-{
-  "email": "edu@email.com"
-}

@@ -9,16 +9,20 @@ import fastifyJwt from '@fastify/jwt'
 import { getProfile } from './routes/auth/get-profile'
 import { errorHandler } from './error-handler'
 import z, { ZodType } from 'zod'
+import { requestPasswordRecover } from './routes/auth/request-password-recover'
+import { resetPassword } from './routes/auth/reset-password'
+import { authenticateWithGithub } from './routes/auth/authenticate-with-github'
+import { env } from '@saas/env'
 
 const validatorCompiler = ({ schema }: { schema: ZodType<any> }) => {
     return (data: unknown) => {
-      const result = schema.safeParse(data)
-      if (!result.success) {
-        throw result.error
-      }
-      return result.data
+        const result = schema.safeParse(data)
+        if (!result.success) {
+            throw result.error
+        }
+        return result.data
     }
-  }
+}
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
 app.setValidatorCompiler(validatorCompiler)
@@ -32,7 +36,16 @@ app.register(fastifySwagger, {
             description: 'Full stack saas application with multitenancy',
             version: '1.0.0',
         },
-        servers: [],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT',
+                    description: 'JWT authorization header',
+                }
+            }
+        }
     },
     transform: jsonSchemaTransform,
 
@@ -45,16 +58,19 @@ app.register(fastifySwaggerUi,
 )
 
 app.register(fastifyJwt, {
-    secret: 'my-secret-key'
+    secret: env.JWT_SECRET,
 })
 app.register(fastifyCors)
 
 app.register(createAccount)
 app.register(authenticateWithPassword)
+app.register(authenticateWithGithub)
 app.register(getProfile)
+app.register(requestPasswordRecover)
+app.register(resetPassword)
 
 
-app.listen({ port: 3333 }, (err, address) => {
+app.listen({ port: env.SERVER_PORT }, (err, address) => {
     if (err) {
         app.log.error(err)
         process.exit(1)
