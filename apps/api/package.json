@@ -2,7 +2,7 @@
     "name": "@saas/api",
     "version": "1.0.0",
     "scripts": {
-        "dev": "bun --env-file=../../.env --watch src/http/server.ts",
+        "dev": "bun run --env-file=../../.env --watch src/http/server.ts",
         "db:migrate": "bun env:load prisma migrate dev",
         "db:studio": "bun env:load prisma studio",
         "env:load": "dotenv -e ../../.env --"
