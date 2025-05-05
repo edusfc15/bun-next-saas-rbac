@@ -149,7 +149,7 @@ exports.Prisma.InviteScalarFieldEnum = {
   email: 'email',
   role: 'role',
   createdAt: 'createdAt',
-  userId: 'userId',
+  authorId: 'authorId',
   organizationId: 'organizationId'
 };
 
@@ -203,7 +203,8 @@ exports.TokenType = exports.$Enums.TokenType = {
 };
 
 exports.AccountProvider = exports.$Enums.AccountProvider = {
-  GITHUB: 'GITHUB'
+  GITHUB: 'GITHUB',
+  GOOGLE: 'GOOGLE'
 };
 
 exports.Role = exports.$Enums.Role = {

@@ -61,7 +61,8 @@ export type TokenType = (typeof TokenType)[keyof typeof TokenType]
 
 
 export const AccountProvider: {
-  GITHUB: 'GITHUB'
+  GITHUB: 'GITHUB',
+  GOOGLE: 'GOOGLE'
 };
 
 export type AccountProvider = (typeof AccountProvider)[keyof typeof AccountProvider]
@@ -4939,7 +4940,7 @@ export namespace Prisma {
     email: string | null
     role: $Enums.Role | null
     createdAt: Date | null
-    userId: string | null
+    authorId: string | null
     organizationId: string | null
   }
 
@@ -4948,7 +4949,7 @@ export namespace Prisma {
     email: string | null
     role: $Enums.Role | null
     createdAt: Date | null
-    userId: string | null
+    authorId: string | null
     organizationId: string | null
   }
 
@@ -4957,7 +4958,7 @@ export namespace Prisma {
     email: number
     role: number
     createdAt: number
-    userId: number
+    authorId: number
     organizationId: number
     _all: number
   }
@@ -4968,7 +4969,7 @@ export namespace Prisma {
     email?: true
     role?: true
     createdAt?: true
-    userId?: true
+    authorId?: true
     organizationId?: true
   }
 
@@ -4977,7 +4978,7 @@ export namespace Prisma {
     email?: true
     role?: true
     createdAt?: true
-    userId?: true
+    authorId?: true
     organizationId?: true
   }
 
@@ -4986,7 +4987,7 @@ export namespace Prisma {
     email?: true
     role?: true
     createdAt?: true
-    userId?: true
+    authorId?: true
     organizationId?: true
     _all?: true
   }
@@ -5068,8 +5069,8 @@ export namespace Prisma {
     email: string
     role: $Enums.Role
     createdAt: Date
-    userId: string | null
-    organizationId: string | null
+    authorId: string | null
+    organizationId: string
     _count: InviteCountAggregateOutputType | null
     _min: InviteMinAggregateOutputType | null
     _max: InviteMaxAggregateOutputType | null
@@ -5094,10 +5095,10 @@ export namespace Prisma {
     email?: boolean
     role?: boolean
     createdAt?: boolean
-    userId?: boolean
+    authorId?: boolean
     organizationId?: boolean
     author?: boolean | Invite$authorArgs<ExtArgs>
-    organization?: boolean | Invite$organizationArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invite"]>
 
   export type InviteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5105,10 +5106,10 @@ export namespace Prisma {
     email?: boolean
     role?: boolean
     createdAt?: boolean
-    userId?: boolean
+    authorId?: boolean
     organizationId?: boolean
     author?: boolean | Invite$authorArgs<ExtArgs>
-    organization?: boolean | Invite$organizationArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invite"]>
 
   export type InviteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5116,10 +5117,10 @@ export namespace Prisma {
     email?: boolean
     role?: boolean
     createdAt?: boolean
-    userId?: boolean
+    authorId?: boolean
     organizationId?: boolean
     author?: boolean | Invite$authorArgs<ExtArgs>
-    organization?: boolean | Invite$organizationArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["invite"]>
 
   export type InviteSelectScalar = {
@@ -5127,37 +5128,37 @@ export namespace Prisma {
     email?: boolean
     role?: boolean
     createdAt?: boolean
-    userId?: boolean
+    authorId?: boolean
     organizationId?: boolean
   }
 
-  export type InviteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "role" | "createdAt" | "userId" | "organizationId", ExtArgs["result"]["invite"]>
+  export type InviteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "role" | "createdAt" | "authorId" | "organizationId", ExtArgs["result"]["invite"]>
   export type InviteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | Invite$authorArgs<ExtArgs>
-    organization?: boolean | Invite$organizationArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }
   export type InviteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | Invite$authorArgs<ExtArgs>
-    organization?: boolean | Invite$organizationArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }
   export type InviteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | Invite$authorArgs<ExtArgs>
-    organization?: boolean | Invite$organizationArgs<ExtArgs>
+    organization?: boolean | OrganizationDefaultArgs<ExtArgs>
   }
 
   export type $InvitePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Invite"
     objects: {
       author: Prisma.$UserPayload<ExtArgs> | null
-      organization: Prisma.$OrganizationPayload<ExtArgs> | null
+      organization: Prisma.$OrganizationPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       email: string
       role: $Enums.Role
       createdAt: Date
-      userId: string | null
-      organizationId: string | null
+      authorId: string | null
+      organizationId: string
     }, ExtArgs["result"]["invite"]>
     composites: {}
   }
@@ -5553,7 +5554,7 @@ export namespace Prisma {
   export interface Prisma__InviteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     author<T extends Invite$authorArgs<ExtArgs> = {}>(args?: Subset<T, Invite$authorArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    organization<T extends Invite$organizationArgs<ExtArgs> = {}>(args?: Subset<T, Invite$organizationArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    organization<T extends OrganizationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrganizationDefaultArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5587,7 +5588,7 @@ export namespace Prisma {
     readonly email: FieldRef<"Invite", 'String'>
     readonly role: FieldRef<"Invite", 'Role'>
     readonly createdAt: FieldRef<"Invite", 'DateTime'>
-    readonly userId: FieldRef<"Invite", 'String'>
+    readonly authorId: FieldRef<"Invite", 'String'>
     readonly organizationId: FieldRef<"Invite", 'String'>
   }
     
@@ -6001,25 +6002,6 @@ export namespace Prisma {
      */
     include?: UserInclude<ExtArgs> | null
     where?: UserWhereInput
-  }
-
-  /**
-   * Invite.organization
-   */
-  export type Invite$organizationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Organization
-     */
-    select?: OrganizationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Organization
-     */
-    omit?: OrganizationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OrganizationInclude<ExtArgs> | null
-    where?: OrganizationWhereInput
   }
 
   /**
@@ -9460,7 +9442,7 @@ export namespace Prisma {
     email: 'email',
     role: 'role',
     createdAt: 'createdAt',
-    userId: 'userId',
+    authorId: 'authorId',
     organizationId: 'organizationId'
   };
 
@@ -9819,10 +9801,10 @@ export namespace Prisma {
     email?: StringFilter<"Invite"> | string
     role?: EnumRoleFilter<"Invite"> | $Enums.Role
     createdAt?: DateTimeFilter<"Invite"> | Date | string
-    userId?: StringNullableFilter<"Invite"> | string | null
-    organizationId?: StringNullableFilter<"Invite"> | string | null
+    authorId?: StringNullableFilter<"Invite"> | string | null
+    organizationId?: StringFilter<"Invite"> | string
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    organization?: XOR<OrganizationNullableScalarRelationFilter, OrganizationWhereInput> | null
+    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
   }
 
   export type InviteOrderByWithRelationInput = {
@@ -9830,8 +9812,8 @@ export namespace Prisma {
     email?: SortOrder
     role?: SortOrder
     createdAt?: SortOrder
-    userId?: SortOrderInput | SortOrder
-    organizationId?: SortOrderInput | SortOrder
+    authorId?: SortOrderInput | SortOrder
+    organizationId?: SortOrder
     author?: UserOrderByWithRelationInput
     organization?: OrganizationOrderByWithRelationInput
   }
@@ -9845,10 +9827,10 @@ export namespace Prisma {
     email?: StringFilter<"Invite"> | string
     role?: EnumRoleFilter<"Invite"> | $Enums.Role
     createdAt?: DateTimeFilter<"Invite"> | Date | string
-    userId?: StringNullableFilter<"Invite"> | string | null
-    organizationId?: StringNullableFilter<"Invite"> | string | null
+    authorId?: StringNullableFilter<"Invite"> | string | null
+    organizationId?: StringFilter<"Invite"> | string
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    organization?: XOR<OrganizationNullableScalarRelationFilter, OrganizationWhereInput> | null
+    organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
   }, "id" | "email_organizationId">
 
   export type InviteOrderByWithAggregationInput = {
@@ -9856,8 +9838,8 @@ export namespace Prisma {
     email?: SortOrder
     role?: SortOrder
     createdAt?: SortOrder
-    userId?: SortOrderInput | SortOrder
-    organizationId?: SortOrderInput | SortOrder
+    authorId?: SortOrderInput | SortOrder
+    organizationId?: SortOrder
     _count?: InviteCountOrderByAggregateInput
     _max?: InviteMaxOrderByAggregateInput
     _min?: InviteMinOrderByAggregateInput
@@ -9871,8 +9853,8 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Invite"> | string
     role?: EnumRoleWithAggregatesFilter<"Invite"> | $Enums.Role
     createdAt?: DateTimeWithAggregatesFilter<"Invite"> | Date | string
-    userId?: StringNullableWithAggregatesFilter<"Invite"> | string | null
-    organizationId?: StringNullableWithAggregatesFilter<"Invite"> | string | null
+    authorId?: StringNullableWithAggregatesFilter<"Invite"> | string | null
+    organizationId?: StringWithAggregatesFilter<"Invite"> | string
   }
 
   export type MemberWhereInput = {
@@ -10287,7 +10269,7 @@ export namespace Prisma {
     role: $Enums.Role
     createdAt?: Date | string
     author?: UserCreateNestedOneWithoutInvitesInput
-    organization?: OrganizationCreateNestedOneWithoutInvitesInput
+    organization: OrganizationCreateNestedOneWithoutInvitesInput
   }
 
   export type InviteUncheckedCreateInput = {
@@ -10295,8 +10277,8 @@ export namespace Prisma {
     email: string
     role: $Enums.Role
     createdAt?: Date | string
-    userId?: string | null
-    organizationId?: string | null
+    authorId?: string | null
+    organizationId: string
   }
 
   export type InviteUpdateInput = {
@@ -10305,7 +10287,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneWithoutInvitesNestedInput
-    organization?: OrganizationUpdateOneWithoutInvitesNestedInput
+    organization?: OrganizationUpdateOneRequiredWithoutInvitesNestedInput
   }
 
   export type InviteUncheckedUpdateInput = {
@@ -10313,8 +10295,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    organizationId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationId?: StringFieldUpdateOperationsInput | string
   }
 
   export type InviteCreateManyInput = {
@@ -10322,8 +10304,8 @@ export namespace Prisma {
     email: string
     role: $Enums.Role
     createdAt?: Date | string
-    userId?: string | null
-    organizationId?: string | null
+    authorId?: string | null
+    organizationId: string
   }
 
   export type InviteUpdateManyMutationInput = {
@@ -10338,8 +10320,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    organizationId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationId?: StringFieldUpdateOperationsInput | string
   }
 
   export type MemberCreateInput = {
@@ -10850,9 +10832,9 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
-  export type OrganizationNullableScalarRelationFilter = {
-    is?: OrganizationWhereInput | null
-    isNot?: OrganizationWhereInput | null
+  export type OrganizationScalarRelationFilter = {
+    is?: OrganizationWhereInput
+    isNot?: OrganizationWhereInput
   }
 
   export type InviteEmailOrganizationIdCompoundUniqueInput = {
@@ -10865,7 +10847,7 @@ export namespace Prisma {
     email?: SortOrder
     role?: SortOrder
     createdAt?: SortOrder
-    userId?: SortOrder
+    authorId?: SortOrder
     organizationId?: SortOrder
   }
 
@@ -10874,7 +10856,7 @@ export namespace Prisma {
     email?: SortOrder
     role?: SortOrder
     createdAt?: SortOrder
-    userId?: SortOrder
+    authorId?: SortOrder
     organizationId?: SortOrder
   }
 
@@ -10883,7 +10865,7 @@ export namespace Prisma {
     email?: SortOrder
     role?: SortOrder
     createdAt?: SortOrder
-    userId?: SortOrder
+    authorId?: SortOrder
     organizationId?: SortOrder
   }
 
@@ -10895,11 +10877,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
-  }
-
-  export type OrganizationScalarRelationFilter = {
-    is?: OrganizationWhereInput
-    isNot?: OrganizationWhereInput
   }
 
   export type MemberOrganizationIdUserIdCompoundUniqueInput = {
@@ -11341,12 +11318,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutInvitesInput, UserUpdateWithoutInvitesInput>, UserUncheckedUpdateWithoutInvitesInput>
   }
 
-  export type OrganizationUpdateOneWithoutInvitesNestedInput = {
+  export type OrganizationUpdateOneRequiredWithoutInvitesNestedInput = {
     create?: XOR<OrganizationCreateWithoutInvitesInput, OrganizationUncheckedCreateWithoutInvitesInput>
     connectOrCreate?: OrganizationCreateOrConnectWithoutInvitesInput
     upsert?: OrganizationUpsertWithoutInvitesInput
-    disconnect?: OrganizationWhereInput | boolean
-    delete?: OrganizationWhereInput | boolean
     connect?: OrganizationWhereUniqueInput
     update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutInvitesInput, OrganizationUpdateWithoutInvitesInput>, OrganizationUncheckedUpdateWithoutInvitesInput>
   }
@@ -11773,7 +11748,7 @@ export namespace Prisma {
     email: string
     role: $Enums.Role
     createdAt?: Date | string
-    organization?: OrganizationCreateNestedOneWithoutInvitesInput
+    organization: OrganizationCreateNestedOneWithoutInvitesInput
   }
 
   export type InviteUncheckedCreateWithoutAuthorInput = {
@@ -11781,7 +11756,7 @@ export namespace Prisma {
     email: string
     role: $Enums.Role
     createdAt?: Date | string
-    organizationId?: string | null
+    organizationId: string
   }
 
   export type InviteCreateOrConnectWithoutAuthorInput = {
@@ -11962,8 +11937,8 @@ export namespace Prisma {
     email?: StringFilter<"Invite"> | string
     role?: EnumRoleFilter<"Invite"> | $Enums.Role
     createdAt?: DateTimeFilter<"Invite"> | Date | string
-    userId?: StringNullableFilter<"Invite"> | string | null
-    organizationId?: StringNullableFilter<"Invite"> | string | null
+    authorId?: StringNullableFilter<"Invite"> | string | null
+    organizationId?: StringFilter<"Invite"> | string
   }
 
   export type MemberUpsertWithWhereUniqueWithoutUserInput = {
@@ -12550,7 +12525,7 @@ export namespace Prisma {
     email: string
     role: $Enums.Role
     createdAt?: Date | string
-    userId?: string | null
+    authorId?: string | null
   }
 
   export type InviteCreateOrConnectWithoutOrganizationInput = {
@@ -12871,7 +12846,7 @@ export namespace Prisma {
     email: string
     role: $Enums.Role
     createdAt?: Date | string
-    organizationId?: string | null
+    organizationId: string
   }
 
   export type MemberCreateManyUserInput = {
@@ -12943,7 +12918,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organization?: OrganizationUpdateOneWithoutInvitesNestedInput
+    organization?: OrganizationUpdateOneRequiredWithoutInvitesNestedInput
   }
 
   export type InviteUncheckedUpdateWithoutAuthorInput = {
@@ -12951,7 +12926,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organizationId?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationId?: StringFieldUpdateOperationsInput | string
   }
 
   export type InviteUncheckedUpdateManyWithoutAuthorInput = {
@@ -12959,7 +12934,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    organizationId?: NullableStringFieldUpdateOperationsInput | string | null
+    organizationId?: StringFieldUpdateOperationsInput | string
   }
 
   export type MemberUpdateWithoutUserInput = {
@@ -13057,7 +13032,7 @@ export namespace Prisma {
     email: string
     role: $Enums.Role
     createdAt?: Date | string
-    userId?: string | null
+    authorId?: string | null
   }
 
   export type MemberCreateManyOrganizationInput = {
@@ -13090,7 +13065,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InviteUncheckedUpdateManyWithoutOrganizationInput = {
@@ -13098,7 +13073,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MemberUpdateWithoutOrganizationInput = {
