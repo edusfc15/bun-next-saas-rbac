@@ -7260,7 +7260,7 @@ export namespace Prisma {
     avatarUrl: string | null
     createdAt: Date
     updatedAt: Date
-    ownerId: string | null
+    ownerId: string
     _count: OrganizationCountAggregateOutputType | null
     _min: OrganizationMinAggregateOutputType | null
     _max: OrganizationMaxAggregateOutputType | null
@@ -7290,7 +7290,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     ownerId?: boolean
-    owner?: boolean | Organization$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
     invites?: boolean | Organization$invitesArgs<ExtArgs>
     members?: boolean | Organization$membersArgs<ExtArgs>
     projects?: boolean | Organization$projectsArgs<ExtArgs>
@@ -7307,7 +7307,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     ownerId?: boolean
-    owner?: boolean | Organization$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["organization"]>
 
   export type OrganizationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7320,7 +7320,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     ownerId?: boolean
-    owner?: boolean | Organization$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["organization"]>
 
   export type OrganizationSelectScalar = {
@@ -7337,23 +7337,23 @@ export namespace Prisma {
 
   export type OrganizationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "domain" | "shouldAttachUsersByDomain" | "avatarUrl" | "createdAt" | "updatedAt" | "ownerId", ExtArgs["result"]["organization"]>
   export type OrganizationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    owner?: boolean | Organization$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
     invites?: boolean | Organization$invitesArgs<ExtArgs>
     members?: boolean | Organization$membersArgs<ExtArgs>
     projects?: boolean | Organization$projectsArgs<ExtArgs>
     _count?: boolean | OrganizationCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    owner?: boolean | Organization$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type OrganizationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    owner?: boolean | Organization$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $OrganizationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Organization"
     objects: {
-      owner: Prisma.$UserPayload<ExtArgs> | null
+      owner: Prisma.$UserPayload<ExtArgs>
       invites: Prisma.$InvitePayload<ExtArgs>[]
       members: Prisma.$MemberPayload<ExtArgs>[]
       projects: Prisma.$ProjectPayload<ExtArgs>[]
@@ -7367,7 +7367,7 @@ export namespace Prisma {
       avatarUrl: string | null
       createdAt: Date
       updatedAt: Date
-      ownerId: string | null
+      ownerId: string
     }, ExtArgs["result"]["organization"]>
     composites: {}
   }
@@ -7762,7 +7762,7 @@ export namespace Prisma {
    */
   export interface Prisma__OrganizationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    owner<T extends Organization$ownerArgs<ExtArgs> = {}>(args?: Subset<T, Organization$ownerArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     invites<T extends Organization$invitesArgs<ExtArgs> = {}>(args?: Subset<T, Organization$invitesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     members<T extends Organization$membersArgs<ExtArgs> = {}>(args?: Subset<T, Organization$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     projects<T extends Organization$projectsArgs<ExtArgs> = {}>(args?: Subset<T, Organization$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -8200,25 +8200,6 @@ export namespace Prisma {
   }
 
   /**
-   * Organization.owner
-   */
-  export type Organization$ownerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
    * Organization.invites
    */
   export type Organization$invitesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8475,7 +8456,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     organizationId: string
-    ownerId: string | null
+    ownerId: string
     _count: ProjectCountAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
     _max: ProjectMaxAggregateOutputType | null
@@ -8506,7 +8487,7 @@ export namespace Prisma {
     organizationId?: boolean
     ownerId?: boolean
     organization?: boolean | OrganizationDefaultArgs<ExtArgs>
-    owner?: boolean | Project$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8520,7 +8501,7 @@ export namespace Prisma {
     organizationId?: boolean
     ownerId?: boolean
     organization?: boolean | OrganizationDefaultArgs<ExtArgs>
-    owner?: boolean | Project$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8534,7 +8515,7 @@ export namespace Prisma {
     organizationId?: boolean
     ownerId?: boolean
     organization?: boolean | OrganizationDefaultArgs<ExtArgs>
-    owner?: boolean | Project$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectScalar = {
@@ -8552,22 +8533,22 @@ export namespace Prisma {
   export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "slug" | "avatarUrl" | "createdAt" | "updatedAt" | "organizationId" | "ownerId", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     organization?: boolean | OrganizationDefaultArgs<ExtArgs>
-    owner?: boolean | Project$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     organization?: boolean | OrganizationDefaultArgs<ExtArgs>
-    owner?: boolean | Project$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     organization?: boolean | OrganizationDefaultArgs<ExtArgs>
-    owner?: boolean | Project$ownerArgs<ExtArgs>
+    owner?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Project"
     objects: {
       organization: Prisma.$OrganizationPayload<ExtArgs>
-      owner: Prisma.$UserPayload<ExtArgs> | null
+      owner: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8578,7 +8559,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       organizationId: string
-      ownerId: string | null
+      ownerId: string
     }, ExtArgs["result"]["project"]>
     composites: {}
   }
@@ -8974,7 +8955,7 @@ export namespace Prisma {
   export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     organization<T extends OrganizationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrganizationDefaultArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    owner<T extends Project$ownerArgs<ExtArgs> = {}>(args?: Subset<T, Project$ownerArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9406,25 +9387,6 @@ export namespace Prisma {
      * Limit how many Projects to delete.
      */
     limit?: number
-  }
-
-  /**
-   * Project.owner
-   */
-  export type Project$ownerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
   }
 
   /**
@@ -9979,8 +9941,8 @@ export namespace Prisma {
     avatarUrl?: StringNullableFilter<"Organization"> | string | null
     createdAt?: DateTimeFilter<"Organization"> | Date | string
     updatedAt?: DateTimeFilter<"Organization"> | Date | string
-    ownerId?: StringNullableFilter<"Organization"> | string | null
-    owner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    ownerId?: StringFilter<"Organization"> | string
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
     invites?: InviteListRelationFilter
     members?: MemberListRelationFilter
     projects?: ProjectListRelationFilter
@@ -9995,7 +9957,7 @@ export namespace Prisma {
     avatarUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    ownerId?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
     owner?: UserOrderByWithRelationInput
     invites?: InviteOrderByRelationAggregateInput
     members?: MemberOrderByRelationAggregateInput
@@ -10014,8 +9976,8 @@ export namespace Prisma {
     avatarUrl?: StringNullableFilter<"Organization"> | string | null
     createdAt?: DateTimeFilter<"Organization"> | Date | string
     updatedAt?: DateTimeFilter<"Organization"> | Date | string
-    ownerId?: StringNullableFilter<"Organization"> | string | null
-    owner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    ownerId?: StringFilter<"Organization"> | string
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
     invites?: InviteListRelationFilter
     members?: MemberListRelationFilter
     projects?: ProjectListRelationFilter
@@ -10030,7 +9992,7 @@ export namespace Prisma {
     avatarUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    ownerId?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
     _count?: OrganizationCountOrderByAggregateInput
     _max?: OrganizationMaxOrderByAggregateInput
     _min?: OrganizationMinOrderByAggregateInput
@@ -10048,7 +10010,7 @@ export namespace Prisma {
     avatarUrl?: StringNullableWithAggregatesFilter<"Organization"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Organization"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Organization"> | Date | string
-    ownerId?: StringNullableWithAggregatesFilter<"Organization"> | string | null
+    ownerId?: StringWithAggregatesFilter<"Organization"> | string
   }
 
   export type ProjectWhereInput = {
@@ -10063,9 +10025,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     organizationId?: StringFilter<"Project"> | string
-    ownerId?: StringNullableFilter<"Project"> | string | null
+    ownerId?: StringFilter<"Project"> | string
     organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
-    owner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -10077,7 +10039,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     organizationId?: SortOrder
-    ownerId?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
     organization?: OrganizationOrderByWithRelationInput
     owner?: UserOrderByWithRelationInput
   }
@@ -10094,9 +10056,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     organizationId?: StringFilter<"Project"> | string
-    ownerId?: StringNullableFilter<"Project"> | string | null
+    ownerId?: StringFilter<"Project"> | string
     organization?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
-    owner?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    owner?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "slug">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -10108,7 +10070,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     organizationId?: SortOrder
-    ownerId?: SortOrderInput | SortOrder
+    ownerId?: SortOrder
     _count?: ProjectCountOrderByAggregateInput
     _max?: ProjectMaxOrderByAggregateInput
     _min?: ProjectMinOrderByAggregateInput
@@ -10126,7 +10088,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     organizationId?: StringWithAggregatesFilter<"Project"> | string
-    ownerId?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    ownerId?: StringWithAggregatesFilter<"Project"> | string
   }
 
   export type UserCreateInput = {
@@ -10436,7 +10398,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner?: UserCreateNestedOneWithoutOwns_organizationInput
+    owner: UserCreateNestedOneWithoutOwns_organizationInput
     invites?: InviteCreateNestedManyWithoutOrganizationInput
     members?: MemberCreateNestedManyWithoutOrganizationInput
     projects?: ProjectCreateNestedManyWithoutOrganizationInput
@@ -10451,7 +10413,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    ownerId?: string | null
+    ownerId: string
     invites?: InviteUncheckedCreateNestedManyWithoutOrganizationInput
     members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
     projects?: ProjectUncheckedCreateNestedManyWithoutOrganizationInput
@@ -10466,7 +10428,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: UserUpdateOneWithoutOwns_organizationNestedInput
+    owner?: UserUpdateOneRequiredWithoutOwns_organizationNestedInput
     invites?: InviteUpdateManyWithoutOrganizationNestedInput
     members?: MemberUpdateManyWithoutOrganizationNestedInput
     projects?: ProjectUpdateManyWithoutOrganizationNestedInput
@@ -10481,7 +10443,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ownerId?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
     invites?: InviteUncheckedUpdateManyWithoutOrganizationNestedInput
     members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
@@ -10496,7 +10458,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    ownerId?: string | null
+    ownerId: string
   }
 
   export type OrganizationUpdateManyMutationInput = {
@@ -10519,7 +10481,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ownerId?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProjectCreateInput = {
@@ -10531,7 +10493,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     organization: OrganizationCreateNestedOneWithoutProjectsInput
-    owner?: UserCreateNestedOneWithoutOwns_projectsInput
+    owner: UserCreateNestedOneWithoutOwns_projectsInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -10543,7 +10505,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     organizationId: string
-    ownerId?: string | null
+    ownerId: string
   }
 
   export type ProjectUpdateInput = {
@@ -10555,7 +10517,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     organization?: OrganizationUpdateOneRequiredWithoutProjectsNestedInput
-    owner?: UserUpdateOneWithoutOwns_projectsNestedInput
+    owner?: UserUpdateOneRequiredWithoutOwns_projectsNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -10567,7 +10529,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     organizationId?: StringFieldUpdateOperationsInput | string
-    ownerId?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProjectCreateManyInput = {
@@ -10579,7 +10541,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     organizationId: string
-    ownerId?: string | null
+    ownerId: string
   }
 
   export type ProjectUpdateManyMutationInput = {
@@ -10601,7 +10563,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     organizationId?: StringFieldUpdateOperationsInput | string
-    ownerId?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -11469,12 +11431,10 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type UserUpdateOneWithoutOwns_organizationNestedInput = {
+  export type UserUpdateOneRequiredWithoutOwns_organizationNestedInput = {
     create?: XOR<UserCreateWithoutOwns_organizationInput, UserUncheckedCreateWithoutOwns_organizationInput>
     connectOrCreate?: UserCreateOrConnectWithoutOwns_organizationInput
     upsert?: UserUpsertWithoutOwns_organizationInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOwns_organizationInput, UserUpdateWithoutOwns_organizationInput>, UserUncheckedUpdateWithoutOwns_organizationInput>
   }
@@ -11583,12 +11543,10 @@ export namespace Prisma {
     update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutProjectsInput, OrganizationUpdateWithoutProjectsInput>, OrganizationUncheckedUpdateWithoutProjectsInput>
   }
 
-  export type UserUpdateOneWithoutOwns_projectsNestedInput = {
+  export type UserUpdateOneRequiredWithoutOwns_projectsNestedInput = {
     create?: XOR<UserCreateWithoutOwns_projectsInput, UserUncheckedCreateWithoutOwns_projectsInput>
     connectOrCreate?: UserCreateOrConnectWithoutOwns_projectsInput
     upsert?: UserUpsertWithoutOwns_projectsInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOwns_projectsInput, UserUpdateWithoutOwns_projectsInput>, UserUncheckedUpdateWithoutOwns_projectsInput>
   }
@@ -12062,7 +12020,7 @@ export namespace Prisma {
     avatarUrl?: StringNullableFilter<"Organization"> | string | null
     createdAt?: DateTimeFilter<"Organization"> | Date | string
     updatedAt?: DateTimeFilter<"Organization"> | Date | string
-    ownerId?: StringNullableFilter<"Organization"> | string | null
+    ownerId?: StringFilter<"Organization"> | string
   }
 
   export type ProjectUpsertWithWhereUniqueWithoutOwnerInput = {
@@ -12093,7 +12051,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     organizationId?: StringFilter<"Project"> | string
-    ownerId?: StringNullableFilter<"Project"> | string | null
+    ownerId?: StringFilter<"Project"> | string
   }
 
   export type UserCreateWithoutTokensInput = {
@@ -12292,7 +12250,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner?: UserCreateNestedOneWithoutOwns_organizationInput
+    owner: UserCreateNestedOneWithoutOwns_organizationInput
     members?: MemberCreateNestedManyWithoutOrganizationInput
     projects?: ProjectCreateNestedManyWithoutOrganizationInput
   }
@@ -12306,7 +12264,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    ownerId?: string | null
+    ownerId: string
     members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
     projects?: ProjectUncheckedCreateNestedManyWithoutOrganizationInput
   }
@@ -12377,7 +12335,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: UserUpdateOneWithoutOwns_organizationNestedInput
+    owner?: UserUpdateOneRequiredWithoutOwns_organizationNestedInput
     members?: MemberUpdateManyWithoutOrganizationNestedInput
     projects?: ProjectUpdateManyWithoutOrganizationNestedInput
   }
@@ -12391,7 +12349,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ownerId?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
     members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
   }
@@ -12405,7 +12363,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner?: UserCreateNestedOneWithoutOwns_organizationInput
+    owner: UserCreateNestedOneWithoutOwns_organizationInput
     invites?: InviteCreateNestedManyWithoutOrganizationInput
     projects?: ProjectCreateNestedManyWithoutOrganizationInput
   }
@@ -12419,7 +12377,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    ownerId?: string | null
+    ownerId: string
     invites?: InviteUncheckedCreateNestedManyWithoutOrganizationInput
     projects?: ProjectUncheckedCreateNestedManyWithoutOrganizationInput
   }
@@ -12484,7 +12442,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: UserUpdateOneWithoutOwns_organizationNestedInput
+    owner?: UserUpdateOneRequiredWithoutOwns_organizationNestedInput
     invites?: InviteUpdateManyWithoutOrganizationNestedInput
     projects?: ProjectUpdateManyWithoutOrganizationNestedInput
   }
@@ -12498,7 +12456,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ownerId?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
     invites?: InviteUncheckedUpdateManyWithoutOrganizationNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutOrganizationNestedInput
   }
@@ -12635,7 +12593,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner?: UserCreateNestedOneWithoutOwns_projectsInput
+    owner: UserCreateNestedOneWithoutOwns_projectsInput
   }
 
   export type ProjectUncheckedCreateWithoutOrganizationInput = {
@@ -12646,7 +12604,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    ownerId?: string | null
+    ownerId: string
   }
 
   export type ProjectCreateOrConnectWithoutOrganizationInput = {
@@ -12757,7 +12715,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    owner?: UserCreateNestedOneWithoutOwns_organizationInput
+    owner: UserCreateNestedOneWithoutOwns_organizationInput
     invites?: InviteCreateNestedManyWithoutOrganizationInput
     members?: MemberCreateNestedManyWithoutOrganizationInput
   }
@@ -12771,7 +12729,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    ownerId?: string | null
+    ownerId: string
     invites?: InviteUncheckedCreateNestedManyWithoutOrganizationInput
     members?: MemberUncheckedCreateNestedManyWithoutOrganizationInput
   }
@@ -12836,7 +12794,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: UserUpdateOneWithoutOwns_organizationNestedInput
+    owner?: UserUpdateOneRequiredWithoutOwns_organizationNestedInput
     invites?: InviteUpdateManyWithoutOrganizationNestedInput
     members?: MemberUpdateManyWithoutOrganizationNestedInput
   }
@@ -12850,7 +12808,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ownerId?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
     invites?: InviteUncheckedUpdateManyWithoutOrganizationNestedInput
     members?: MemberUncheckedUpdateManyWithoutOrganizationNestedInput
   }
@@ -13116,7 +13074,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    ownerId?: string | null
+    ownerId: string
   }
 
   export type InviteUpdateWithoutOrganizationInput = {
@@ -13169,7 +13127,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    owner?: UserUpdateOneWithoutOwns_projectsNestedInput
+    owner?: UserUpdateOneRequiredWithoutOwns_projectsNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutOrganizationInput = {
@@ -13180,7 +13138,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ownerId?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProjectUncheckedUpdateManyWithoutOrganizationInput = {
@@ -13191,7 +13149,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ownerId?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerId?: StringFieldUpdateOperationsInput | string
   }
 
 

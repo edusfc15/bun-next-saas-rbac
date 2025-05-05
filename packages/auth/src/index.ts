@@ -17,7 +17,7 @@ import { z } from 'zod'
 export * from './models/user'
 export * from './models/organization'
 export * from './models/project'
-
+export * from './roles'
 
 const appAbilitiesSchema = z.union([
     projectSubject,
@@ -37,7 +37,7 @@ type AppAbilities = z.infer<typeof appAbilitiesSchema>
 export type AppAbility = MongoAbility<AppAbilities>
 export const createAppAbility = createMongoAbility as CreateAbility<AppAbility>
 
-export function defineAbilityFor(user: User) { 
+export function defineAbilityFor(user: User) {
 
     const builder = new AbilityBuilder<AppAbility>(createAppAbility)
 
@@ -46,12 +46,17 @@ export function defineAbilityFor(user: User) {
     }
 
     permissions[user.role](user, builder)
-    
+
     const ability = builder.build({
         detectSubjectType(subject) {
             return subject.__typename
         }
     })
+
+
+    ability.can = ability.can.bind(ability)
+    ability.cannot = ability.cannot.bind(ability)
+
     return ability
 
 }
