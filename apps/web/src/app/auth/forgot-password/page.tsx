@@ -6,9 +6,10 @@ import Image from 'next/image'
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@radix-ui/react-separator";
+
 
 import githubIcon from "@/assets/github-icon.svg";
+import { Separator } from "@/components/ui/separator";
 
 export default function SignInPage() {
   return (

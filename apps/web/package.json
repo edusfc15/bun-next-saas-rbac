@@ -1,12 +1,13 @@
 {
-  "name": "web",
+  "name": "@saas/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "bun env:load next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.9",
@@ -14,18 +15,19 @@
     "@radix-ui/react-label": "^2.1.5",
     "@radix-ui/react-separator": "^1.1.5",
     "@radix-ui/react-slot": "^1.2.1",
+    "@saas/auth": "*",
+    "@saas/env": "*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cookies-next": "^5.1.0",
     "ky": "^1.8.1",
     "lucide-react": "^0.507.0",
     "next": "15.3.1",
+    "next-themes": "^0.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.2.0",
-    "zod": "^3.24.4",
-    "@saas/auth": "*"
-
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@saas/eslint-config": "*",
@@ -35,6 +37,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv-cli": "^8.0.0",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.2.9",
     "typescript": "^5"

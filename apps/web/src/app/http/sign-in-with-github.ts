@@ -7,7 +7,7 @@ interface SignInWithGithubResponse {
     token: string;
 }
 
-export async function signInWithGithub({ code}: SignInWithGithubRequest) {
+export async function signInWithGithub({ code }: SignInWithGithubRequest) {
 
     const result = api
         .post(
@@ -20,7 +20,6 @@ export async function signInWithGithub({ code}: SignInWithGithubRequest) {
         )
         .json<SignInWithGithubResponse>();
 
-    console.log('resultado', result);
     return result;
 
 }

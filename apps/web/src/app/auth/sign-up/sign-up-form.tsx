@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Separator } from '@radix-ui/react-separator'
+
 
 import githubIcon from '@/assets/github-icon.svg'
 import { useFormState } from '@/hooks/use-form-state'
@@ -14,6 +14,7 @@ import { signUpAction } from './actions'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { AlertTriangle, Loader2 } from 'lucide-react'
 import { signInWithGithub } from '../actions'
+import { Separator } from '@/components/ui/separator'
 
 export function SignUpForm() {
   const [{ success, message, errors }, handleSubmit, isPending] =
