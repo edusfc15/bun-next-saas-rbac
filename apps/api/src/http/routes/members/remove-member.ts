@@ -34,7 +34,7 @@ export async function removeMember(app: FastifyInstance) {
             const { cannot } = getUserPermissions(userId, membership.role)
 
             if (cannot('delete', 'User')) {
-                throw new UnauthorizedError('You are not allowed to remvoe this member from the organization')
+                throw new UnauthorizedError('You are not allowed to remove this member from the organization')
             }
 
             await prisma.member.delete({
