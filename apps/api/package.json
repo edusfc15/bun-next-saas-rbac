@@ -5,7 +5,9 @@
         "dev": "bun run --env-file=../../.env --watch src/http/server.ts",
         "db:migrate": "bun env:load prisma migrate dev",
         "db:studio": "bun env:load prisma studio",
-        "env:load": "dotenv -e ../../.env --"
+        "env:load": "dotenv -e ../../.env --",
+        "build" : "tsc",
+        "start": "bun dist/http/server.js"
     },
     "dependencies": {
         "@fastify/cors": "^11.0.1",
@@ -29,6 +31,7 @@
         "@types/node": "^22.15.3",
         "dotenv-cli": "^8.0.0",
         "prisma": "^6.7.0",
+        "tsup": "^8.5.0",
         "tsx": "^4.19.4",
         "typescript": "^5.3.2"
     },

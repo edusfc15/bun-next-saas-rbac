@@ -1,9 +1,9 @@
-import { Member, Organization } from '@/generated/prisma';
+import { Member, Organization } from '../prisma/generated/prisma';
 import 'fastify'
 
 declare module 'fastify' {
     export interface FastifyRequest {
         getCurrentUserId: () => Promise<string>;
-        getUserMembership(slug: string) : Promise<{organization: Organization, membership: Member}>;
+        getUserMembership(slug: string): Promise<{ organization: Organization, membership: Member }>;
     }
 }

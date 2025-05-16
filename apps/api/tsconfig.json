@@ -1,6 +1,11 @@
 {
   "extends": "@saas/tsconfig/node.json",
-  "include": ["src/**/*", "prisma/generated", "@types/**/*"],
+  "include": [
+    "src/**/*",
+    "prisma/generated",
+    "@types/**/*",
+    "prisma/generated"
+  ],
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
