@@ -6,7 +6,7 @@
         "db:migrate": "bun env:load prisma migrate dev",
         "db:studio": "bun env:load prisma studio",
         "env:load": "dotenv -e ../../.env --",
-        "build" : "tsc",
+        "build" : "tsup",
         "start": "bun dist/http/server.js"
     },
     "dependencies": {
