@@ -123,7 +123,7 @@ app.register(getOrganizationBilling)
 
 
 
-app.listen({ port: env.SERVER_PORT }, (err, address) => {
+app.listen({ port: env.PORT }, (err, address) => {
     if (err) {
         app.log.error(err)
         process.exit(1)
