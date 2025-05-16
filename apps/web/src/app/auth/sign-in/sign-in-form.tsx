@@ -15,11 +15,14 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useFormState } from '@/hooks/use-form-state'
 import { signInWithGithub } from '../actions'
 import { Separator } from '@/components/ui/separator'
+import { useSearchParams } from 'next/navigation'
 
 export function SignInForm() {
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
     signInWithEmailAndPassword
   )
+
+  const searchParams = useSearchParams()
 
   return (
     <div className="space-y-4">
@@ -34,7 +37,7 @@ export function SignInForm() {
 
         <div className="space-y-1">
           <Label htmlFor="email">Email</Label>
-          <Input type="email" id="email" name="email" />
+          <Input type="email" id="email" name="email" defaultValue={searchParams.get('email') ?? ''} />
 
           {errors?.email && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400">

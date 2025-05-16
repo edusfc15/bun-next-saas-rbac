@@ -4,6 +4,7 @@ import { getCurrentOrg } from '@/app/auth/auth/auth'
 import { createProject } from '@/app/http/create-project'
 // import { createProject } from '@/app/http/create-projects'
 import { HTTPError } from 'ky'
+import { revalidateTag } from 'next/cache'
 import { z } from 'zod'
 
 const projectSchema = z
@@ -14,6 +15,7 @@ const projectSchema = z
     })
 
 export async function createProjectAction(data: FormData) {
+    const currentOrg = await getCurrentOrg()
     const result = projectSchema.safeParse(Object.fromEntries(data))
 
     if (!result.success) {
@@ -25,10 +27,12 @@ export async function createProjectAction(data: FormData) {
 
     try {
         await createProject({
-            org: (await getCurrentOrg()) ?? '',
+            org: currentOrg!,
             name,
             description
         })
+
+        revalidateTag(`${currentOrg}/projects`)
 
     } catch (err) {
         if (err instanceof HTTPError) {
