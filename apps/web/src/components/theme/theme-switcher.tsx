@@ -10,16 +10,19 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
 
-
 export function ThemeSwitcher() {
   const { resolvedTheme, setTheme } = useTheme()
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
-            <Sun className="size-4 dark:invisible dark:size-0" />
-            <Moon className="invisible size-0  dark:visible dark:size-4" />
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative flex items-center justify-center"
+        >
+          <Sun className="absolute size-4 transition-all dark:scale-0 dark:opacity-0" />
+          <Moon className="absolute size-4 scale-0 opacity-0 transition-all dark:scale-100 dark:opacity-100" />
           <span className="sr-only">Toggle Theme</span>
         </Button>
       </DropdownMenuTrigger>
