@@ -7,7 +7,7 @@
     "db:studio": "bun env:load prisma studio",
     "env:load": "dotenv -e ../../.env -- bun dist/http/server.js",
     "build": "tsup",
-    "start": "bun dist/http/server.js",
+    "start": "bun --inspect --verbose dist/http/server.js",
     "postinstall": "prisma generate"
   },
   "dependencies": {
