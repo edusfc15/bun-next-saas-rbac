@@ -7,7 +7,6 @@
     "db:studio": "bun env:load prisma studio",
     "env:load": "dotenv -e ../../.env -- bun dist/http/server.js",
     "build": "tsup",
-    "postbuild": "cp prisma/generated/prisma/query_engine-windows.dll.node dist/",
     "start": "bun dist/http/server.js"
   },
   "dependencies": {
