@@ -122,11 +122,12 @@ app.register(getOrganizationBilling)
 
 
 
-
-app.listen({ port: env.PORT, host: '0.0.0.0' }, (err, address) => {
-    if (err) {
-        console.error('❌ Error on listen:', err)
+app
+    .listen({ port: env.PORT, host: '0.0.0.0' })
+    .then((address) => {
+        console.log(`✅ Server listening at ${address}`)
+    })
+    .catch((err) => {
+        console.error('❌ Failed to start server:', err)
         process.exit(1)
-    }
-    console.log(`✅ Server listening at ${address}`)
-})
+    })
