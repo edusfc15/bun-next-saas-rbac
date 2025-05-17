@@ -28,7 +28,7 @@ export const errorHandler: FastifyErrorHanlder = (error, request, reply) => {
         })
     }
 
-    //console.error(error)
+    console.error(error)
 
     // send error to sentry or any other error tracking service
 

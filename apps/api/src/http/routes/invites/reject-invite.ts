@@ -18,7 +18,7 @@ export async function rejectInvite(app: FastifyInstance) {
                     inviteId: z.string().uuid(),
                 }),
                 response: {
-                    204: z.null
+                    204: z.null()
                 }
             }
         },

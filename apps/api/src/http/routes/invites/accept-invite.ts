@@ -18,18 +18,18 @@ export async function acceptInvite(app: FastifyInstance) {
                     inviteId: z.string().uuid(),
                 }),
                 response: {
-                    204: z.null
+                    204: z.null()
                 }
             }
         },
             async (request, reply) => {
-                const  userId = await request.getCurrentUserId()
+                const userId = await request.getCurrentUserId()
                 const { inviteId } = request.params
 
                 const invite = await prisma.invite.findUnique({
                     where: {
                         id: inviteId
-                    },      
+                    },
                 })
 
                 if (!invite) {
@@ -44,9 +44,9 @@ export async function acceptInvite(app: FastifyInstance) {
                 if (!user) {
                     throw new BadRequestError('User not found')
                 }
-                
+
                 if (user.email !== invite.email) {
-                    throw new BadRequestError('This invite belongs to another user')                    
+                    throw new BadRequestError('This invite belongs to another user')
                 }
 
                 await prisma.$transaction([
@@ -65,7 +65,7 @@ export async function acceptInvite(app: FastifyInstance) {
 
                 ])
 
-                return  reply.status(204).send()
+                return reply.status(204).send()
 
             }
         )
