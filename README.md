@@ -1,6 +1,6 @@
 # Bun Next SaaS RBAC
 
-This project was made by following a course at RocketSeat course platform
+*This project was created by following a Rocketseat course, which originally used PNPM. I chose to use Bun instead, both as a challenge and for improved efficiency.*
 
 A modern SaaS boilerplate built with [Bun](https://bun.sh/), [Next.js](https://nextjs.org/), and a robust Role-Based Access Control (RBAC) system. This project is designed to help you quickly launch SaaS products with multi-tenant support, authentication, organization management, and more.
 
